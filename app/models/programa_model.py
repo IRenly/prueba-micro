@@ -5,4 +5,5 @@ class Programa(Base):
     __tablename__ = "programas"
 
     id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String, index=True)
+    nombre = Column(String, index=True)    
+    descripcion = Column(String, index=True)

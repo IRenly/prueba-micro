@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.controllers import programa_controller
-from schemas import Programa
+from app.schemas import Programa as ProgramaSchema
 
 router = APIRouter(prefix="/programas", tags=["Programas"])
 
@@ -15,11 +15,11 @@ def obtener_programa(id: int, db: Session = Depends(get_db)):
     return programa_controller.obtener_programa_por_id(id, db)
 
 @router.post("/")
-def crear_programa(data: Programa, db: Session = Depends(get_db)):
+def crear_programa(data: ProgramaSchema, db: Session = Depends(get_db)):
     return programa_controller.crear_programa(data, db)
 
 @router.put("/{id}")
-def actualizar_programa(id: int, data: Programa, db: Session = Depends(get_db)):
+def actualizar_programa(id: int, data: ProgramaSchema, db: Session = Depends(get_db)):
     return programa_controller.actualizar_programa(id, data, db)
 
 @router.delete("/{id}")
